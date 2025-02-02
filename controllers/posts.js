@@ -28,8 +28,14 @@ module.exports = {
   },
   createPost: async (req, res) => {
     try {
+      // Log the file path being uploaded
+      console.log(`Uploading image from path: ${req.file.path}`);
+
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
+
+      // Log the result from Cloudinary
+      console.log(`Cloudinary upload result: ${JSON.stringify(result)}`);
 
       await Post.create({
         title: req.body.title,
@@ -42,9 +48,11 @@ module.exports = {
       console.log("Post has been added!");
       res.redirect("/profile");
     } catch (err) {
-      console.log(err);
+      console.log(`Error creating post: ${err}`);
+      res.redirect("/profile");
     }
   },
+
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
@@ -61,15 +69,25 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     try {
-      // Find post by id
+      console.log(`Finding post with id: ${req.params.id}`);
       let post = await Post.findById({ _id: req.params.id });
+      if (!post) {
+        console.log(`Post not found with id: ${req.params.id}`);
+        return res.redirect("/profile");
+      }
+      console.log(`Post found: ${post}`);
+
       // Delete image from cloudinary
+      console.log(`Deleting image with cloudinaryId: ${post.cloudinaryId}`);
       await cloudinary.uploader.destroy(post.cloudinaryId);
+
       // Delete post from db
-      await Post.remove({ _id: req.params.id });
+      console.log(`Deleting post with id: ${req.params.id}`);
+      await Post.findOneAndDelete({ _id: req.params.id });
       console.log("Deleted Post");
       res.redirect("/profile");
     } catch (err) {
+      console.log(`Error deleting post: ${err}`);
       res.redirect("/profile");
     }
   },
