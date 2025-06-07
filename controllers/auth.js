@@ -4,10 +4,11 @@ const User = require("../models/User");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    return res.redirect("/feed");
   }
   res.render("login", {
     title: "Login",
+    user: req.user
   });
 };
 
@@ -39,7 +40,8 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/profile");
+      
+      res.redirect(req.session.returnTo || "/feed");
     });
   })(req, res, next);
 };
@@ -68,10 +70,11 @@ exports.logout = (req, res, next) => {
 
 exports.getSignup = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    return res.redirect("/feed");
   }
   res.render("signup", {
     title: "Create Account",
+    user: req.user
   });
 };
 
@@ -121,7 +124,7 @@ exports.postSignup = async (req, res, next) => {
       });
     });
 
-    res.redirect("/profile");
+    res.redirect("/feed");
   } catch (err) {
     next(err);
   }
