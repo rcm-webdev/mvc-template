@@ -13,7 +13,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts });
+      res.render("feed.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -46,6 +46,7 @@ module.exports = {
         user: req.user.id,
       });
       console.log("Post has been added!");
+      req.flash("success", { msg: "Post created successfully" });
       res.redirect("/profile");
     } catch (err) {
       console.log(`Error creating post: ${err}`);
@@ -84,6 +85,7 @@ module.exports = {
       // Delete post from db
       console.log(`Deleting post with id: ${req.params.id}`);
       await Post.findOneAndDelete({ _id: req.params.id });
+      req.flash("success", { msg: "Post deleted successfully" });
       console.log("Deleted Post");
       res.redirect("/profile");
     } catch (err) {
