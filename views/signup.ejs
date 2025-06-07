@@ -1,36 +1,48 @@
 <%- include('partials/header') -%>
-    <main class="container">
+    <main class="max-w-sm mx-auto mt-10 p-8 bg-base-200/60 rounded-2xl shadow-md">
         <div class="row justify-content-center">
-            <section class="col-6 mt-5">
+            <section class="col-6 mt-5 space-y-4">
                 <% if (locals.messages.errors) { %>
                     <% messages.errors.forEach( el => { %>
-                        <div class="alert alert-danger"><%= el.msg %></div>
+                        <div class="alert alert-error text-white"><%= el.msg %></div>
                     <% }) %>    
                 <% } %>
                 <% if (locals.messages.info) { %>
                     <% messages.info.forEach( el => { %>
-                        <div class="alert alert-info"><%= el.msg %></div>
+                        <div class="alert alert-info text-white"><%= el.msg %></div>
                     <% }) %>    
                 <% } %>
-                <form action="/signup" method="POST">
-                    <div class="mb-3">
-                        <label for="userName" class="form-label">User Name</label>
-                        <input type="text" class="form-control" id="userName" name="userName">
+                 <!-- Logo -->
+      <div class=" mx-auto w-20 h-20 bg-primary/10 rounded-lg flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-primary" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M13.737 6.789a.75.75 0 0 1 .475.948l-3 9a.75.75 0 0 1-1.423-.474l3-9a.75.75 0 0 1 .948-.474m2.275 1.141a.75.75 0 0 1 1.058.082l3 3.5a.75.75 0 0 1 0 .976l-3 3.5a.75.75 0 0 1-1.14-.976L18.513 12l-2.581-3.012a.75.75 0 0 1 .08-1.057M7.988 7.93a.75.75 0 0 1 .081 1.058L5.488 12l2.581 3.012a.75.75 0 0 1-1.138.976l-3-3.5a.75.75 0 0 1 0-.976l3-3.5a.75.75 0 0 1 1.057-.081" clip-rule="evenodd"/></svg>
+      </div>
+                <form action="/signup" method="POST" class="space-y-4">
+                    <div class="mb-3 form-control">
+                        <label for="userName" class="label">
+                          <span class="label-text">User Name</span>
+                          </label>
+                        <input type="text" class="input input-bordered" id="userName" name="userName" placeholder="unicorn64">
                       </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                      <label for="exampleInputEmail1" class="label">
+                        <span class="label-text">Email address</span>
+                        </label>
+                      <input type="email" class="input input-bordered" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="unicorn64@unicorn.com">
+                      <div id="emailHelp" class="text-xs text-gray-500">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                      <label for="password" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="password" name="password">
+                      <label for="password" class="label">
+                        <span class="label-text">Password</span>
+                        </label>
+                      <input type="password" class="input input-bordered" id="password" name="password" placeholder="********">
                     </div>
                     <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                        <label for="confirmPassword" class="label">
+                          <span class="label-text">Confirm Password</span>
+                          </label>
+                        <input type="password" class="input input-bordered" id="confirmPassword" name="confirmPassword" placeholder="********">
                       </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary w-full bg-opacity-30 ">Submit</button>
                   </form>
             </section>
         </div>
