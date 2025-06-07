@@ -28,13 +28,14 @@
                         <span class="label-text">Email address</span>
                         </label>
                       <input type="email" class="input input-bordered" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="unicorn64@unicorn.com">
-                      <div id="emailHelp" class="text-xs text-gray-500">We'll never share your email with anyone else.</div>
+                      <div id="emailHelp" class=" mt-2 text-xs text-gray-500">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
                       <label for="password" class="label">
                         <span class="label-text">Password</span>
                         </label>
                       <input type="password" class="input input-bordered" id="password" name="password" placeholder="********">
+                      <div id="passwordHelp" class=" mt-2 text-xs text-gray-500">Password must be at least 8 characters long.</div>
                     </div>
                     <div class="mb-3">
                         <label for="confirmPassword" class="label">
@@ -42,7 +43,19 @@
                           </label>
                         <input type="password" class="input input-bordered" id="confirmPassword" name="confirmPassword" placeholder="********">
                       </div>
-                    <button type="submit" class="btn btn-primary w-full bg-opacity-30 ">Submit</button>
+                    <button type="submit" class="btn btn-primary w-full bg-opacity-30 ">
+                      <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-4 h-4" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8z"
+                      ></path>
+                    </svg>
+                      
+                      Create Account</button>
                   </form>
             </section>
         </div>
